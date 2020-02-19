@@ -10,17 +10,32 @@ class gumball_machine:
         else:
             self.money_returned.append(money)
 
+    def return_invalid_currency(self):
+        print("Returning invalid currencies:\n")
+        for x in range(len(self.money_returned)):
+            print(self.money_returned[x])
+
+        self.money_returned = []
+
     def dispense_red(self):
+        if len(self.money_returned) != 0:
+            self.return_invalid_currency()
         if self.money_value >= 5:
             self.money_value -= 5
+            print("Enjoy your red gumball\n")
         else:
             print("You need at least 5 cents to dispense a red gumball\n")
 
     def dispense_yellow(self):
+        if len(self.money_returned) != 0:
+            self.return_invalid_currency()
         if self.money_value >= 10:
             self.money_value -= 10
+            print("Enjoy your yellow gumball\n")
         else:
             print("You need at least 10 cents to dispense a red gumball\n")
+
+
 
 
 
