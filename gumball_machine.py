@@ -11,7 +11,7 @@ class gumball_machine:
             self.money_returned.append(money)
 
     def return_invalid_currency(self):
-        print("Returning invalid currencies:\n")
+        print("Returning invalid currencies:")
         for x in range(len(self.money_returned)):
             print(self.money_returned[x])
 
@@ -41,6 +41,7 @@ class gumball_machine:
 
         else:
             print("Returning your change of ", self.money_value, " cents")
+            self.money_value = 0
 
 
 
