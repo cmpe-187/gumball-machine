@@ -1,23 +1,23 @@
-valid_currency = {"nickel": 5, "dime": 10, "quarter": 25}
+class gumball_machine:
+    def __init__(self):
+        self.valid_currency = {"nickel": 5, "dime": 10, "quarter": 25}
+        self.money_inserted = []
+        self.money_value = 0
+        self.money_returned = []
 
-money_inserted = []
-money_value = 0
-money_returned = []
+    def insert(self, money):
+        self.money_inserted.append(money)
 
-def insert(money):
-    money_inserted.append(money)
+    def convert_currency(self):
+        for x in range(len(self.money_inserted) - 1):
+            if self.money_inserted[x] in self.valid_currency:
+                self.money_value += self.valid_currency[self.money_inserted[x]]
+            else:
+                self.money_returned.append(self.money_inserted[x])
 
-def convert_currency():
-    current_value = 0
-    for x in range(len(money_inserted) - 1):
-        if money_inserted[x] in valid_currency:
-            current_value += valid_currency[money_inserted[x]]
-        else:
-            money_returned.append(money_inserted[x])
+    def dispense_red(self):
+        if self.money_value == 0:
+            self.convert_currency()
 
-    return current_value
 
-def dispense_red(money_value):
-    if money_value == 0:
-        money_value = convert_currency()
-    
+
