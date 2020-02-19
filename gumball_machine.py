@@ -33,7 +33,7 @@ class gumball_machine:
             self.money_value -= 10
             print("Enjoy your yellow gumball\n")
         else:
-            print("You need at least 10 cents to dispense a red gumball\n")
+            print("You need at least 10 cents to dispense a yellow gumball\n")
 
     def return_my_change(self):
         if self.money_value == 0:
