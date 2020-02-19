@@ -35,9 +35,12 @@ class gumball_machine:
         else:
             print("You need at least 10 cents to dispense a red gumball\n")
 
+    def return_my_change(self):
+        if self.money_value == 0:
+            print("There is no change to return\n")
 
-
-
+        else:
+            print("Returning your change of ", self.money_value, " cents")
 
 
 
