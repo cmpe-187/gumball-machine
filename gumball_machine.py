@@ -54,11 +54,14 @@ class GumballMachine:
         return response
 
     def return_my_change(self):
+        response = ""
+        
         if self.currency_value == 0:
-            return "There is no change to return"
+            response = "There is no change to return"
 
         # Returns the user's change
         else:
             response = f"Returning your change of {self.currency_value} cents"
             self.currency_value = 0
-            return response
+
+        return response
