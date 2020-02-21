@@ -30,6 +30,37 @@ class NoMoneyTestCases(unittest.TestCase):
         self.assertEqual(expected_output, actual_output)
 
 
+class ReturnValidCurrencyTestCases(unittest.TestCase):
+    gumball_machine = gumball_machine_class.GumballMachine()
+
+    def test_return_nickel(self):
+        """Tests inserting a nickel, then returning change."""
+        # input: insert("nickel"), return_my_change()
+        expected_output = "Returning your change of 5 cents"
+
+        self.gumball_machine.insert("nickel")
+        actual_output = self.gumball_machine.return_my_change()
+        self.assertEqual(expected_output, actual_output)
+
+    def test_return_dime(self):
+        """Tests inserting a dime, then returning change."""
+        # input: insert("dime"), return_my_change()
+        expected_output = "Returning your change of 10 cents"
+
+        self.gumball_machine.insert("dime")
+        actual_output = self.gumball_machine.return_my_change()
+        self.assertEqual(expected_output, actual_output)
+
+    def test_return_quarter(self):
+        """Tests inserting a quarter, then returning change."""
+        # input: insert("quarter"), return_my_change()
+        expected_output = "Returning your change of 25 cents"
+
+        self.gumball_machine.insert("quarter")
+        actual_output = self.gumball_machine.return_my_change()
+        self.assertEqual(expected_output, actual_output)
+
+
 class ExactMoneyTestCases(unittest.TestCase):
     gumball_machine = gumball_machine_class.GumballMachine()
 
