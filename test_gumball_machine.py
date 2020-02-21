@@ -103,7 +103,7 @@ class InvalidCurrencyTestCases(unittest.TestCase):
     def test_return_dollar(self):
         """Tests inserting a dollar, then returning change"""
         # input: insert("dollar"), return_my_change()
-        expected_output = "dollar"
+        expected_output = "Returning your invalid currency of dollar"
 
         self.gumball_machine.insert("dollar")
         actual_output = self.gumball_machine.return_my_change()
@@ -112,7 +112,7 @@ class InvalidCurrencyTestCases(unittest.TestCase):
     def test_return_dollars(self):
         """Tests inserting multiple dollars, then returning change"""
         # input: insert("dollar"), insert("dollar"), return_my_change()
-        expected_output = "dollar, dollar"
+        expected_output = "Returning your invalid currency of dollar, dollar"
 
         self.gumball_machine.insert("dollar")
         self.gumball_machine.insert("dollar")
@@ -122,7 +122,7 @@ class InvalidCurrencyTestCases(unittest.TestCase):
     def test_insert_dollar_dispense_red(self):
         """Tests inserting a dollar, then attempting to dispense a red gumball"""
         # input: insert("dollar"), dispense_red()
-        expected_output = "dollar"
+        expected_output = "Returning your invalid currency of dollar"
 
         self.gumball_machine.insert("dollar")
         actual_output = self.gumball_machine.dispense_red()
@@ -131,7 +131,7 @@ class InvalidCurrencyTestCases(unittest.TestCase):
     def test_insert_dollar_dispense_yellow(self):
         """Tests inserting a dollar, then attempting to dispense a yellow gumball"""
         # input: insert("dollar"), yellow()
-        expected_output = "dollar"
+        expected_output = "Returning your invalid currency of dollar"
 
         self.gumball_machine.insert("dollar")
         actual_output = self.gumball_machine.dispense_yellow()
