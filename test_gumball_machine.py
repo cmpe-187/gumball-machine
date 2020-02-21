@@ -167,7 +167,7 @@ class MultipleGumballsExactCurrencyTestCases(unittest.TestCase):
 
     def test_insert_nickels_dispense_yellows(self):
         """Tests inserting 4 nickels, and dispensing 2 yellow gumballs"""
-        # input: insert("nickel"), insert("nickel"), insert("nickel"), insert("nickel)", dispense_yellow(), dispense_yellow(), return_my_change()
+        # input: insert("nickel"), insert("nickel"), insert("nickel"), insert("nickel"), dispense_yellow(), dispense_yellow(), return_my_change()
         expected_output = "There is no change to return"
 
         self.gumball_machine.insert("nickel")
