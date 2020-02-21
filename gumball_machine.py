@@ -28,10 +28,10 @@ class gumball_machine:
 
         if self.money_value >= 5:
             self.money_value -= 5
-            print("Enjoy your red gumball\n")
+            return "Enjoy your red gumball"
 
         else:
-            print("You need at least 5 cents to dispense a red gumball\n")
+            return "You need at least 5 cents to dispense a red gumball"
 
     def dispense_yellow(self):
         if len(self.invalid_currencies) != 0:
@@ -39,19 +39,16 @@ class gumball_machine:
 
         if self.money_value >= 10:
             self.money_value -= 10
-            print("Enjoy your yellow gumball\n")
+            return "Enjoy your yellow gumball"
 
         else:
-            print("You need at least 10 cents to dispense a yellow gumball\n")
+            return "You need at least 10 cents to dispense a yellow gumball"
 
     def return_my_change(self):
         if self.money_value == 0:
-            print("There is no change to return\n")
+            return "There is no change to return"
 
         # Returns the user's change
         else:
-            print("Returning your change of ", self.money_value, " cents")
             self.money_value = 0
-
-
-
+            return "Returning your change of ", self.money_value, " cents"
