@@ -2,7 +2,7 @@ import unittest
 import gumball_machine as gumball_machine_class
 
 
-class NoCurrencyTestCase(unittest.TestCase):
+class NoCurrencyTestCases(unittest.TestCase):
     def setUp(self):
         self.gumball_machine = gumball_machine_class.GumballMachine()
 
@@ -63,7 +63,7 @@ class ReturnValidCurrencyTestCases(unittest.TestCase):
         self.assertEqual(expected_output, actual_output)
 
 
-class ExactCurrencyTestCase(unittest.TestCase):
+class ExactCurrencyTestCases(unittest.TestCase):
     def setUp(self):
         self.gumball_machine = gumball_machine_class.GumballMachine()
 
@@ -137,6 +137,59 @@ class InvalidCurrencyTestCases(unittest.TestCase):
         actual_output = self.gumball_machine.dispense_yellow()
         self.assertEqual(expected_output, actual_output)
 
+
+class MultipleGumballsExactCurrencyTestCases(unittest.TestCase):
+    def setUp(self):
+        self.gumball_machine = gumball_machine_class.GumballMachine()
+
+    def test_insert_nickels_dispense_reds(self):
+        """Tests inserting 2 nickels, and dispensing 2 red gumballs"""
+        # input: insert("nickel"), insert("nickel"), dispense_red(), dispense_red(), return_my_change()
+        expected_output = "There is no change to return"
+
+        self.gumball_machine.insert("nickel")
+        self.gumball_machine.insert("nickel")
+        self.gumball_machine.dispense_red()
+        self.gumball_machine.dispense_red()
+        actual_output = self.gumball_machine.return_my_change()
+        self.assertEqual(expected_output, actual_output)
+
+    def test_insert_dime_dispense_reds(self):
+        """Tests inserting a dime, and dispensing 2 red gumballs"""
+        # input: insert("dime"), dispense_red(), dispense_red(), return_my_change()
+        expected_output = "There is no change to return"
+
+        self.gumball_machine.insert("dime")
+        self.gumball_machine.dispense_red()
+        self.gumball_machine.dispense_red()
+        actual_output = self.gumball_machine.return_my_change()
+        self.assertEqual(expected_output, actual_output)
+
+    def test_insert_nickels_dispense_yellows(self):
+        """Tests inserting 4 nickels, and dispensing 2 yellow gumballs"""
+        # input: insert("nickel"), insert("nickel"), insert("nickel"), insert("nickel)", dispense_yellow(), dispense_yellow(), return_my_change()
+        expected_output = "There is no change to return"
+
+        self.gumball_machine.insert("nickel")
+        self.gumball_machine.insert("nickel")
+        self.gumball_machine.insert("nickel")
+        self.gumball_machine.insert("nickel")
+        self.gumball_machine.dispense_yellow()
+        self.gumball_machine.dispense_yellow()
+        actual_output = self.gumball_machine.return_my_change()
+        self.assertEqual(expected_output, actual_output)
+
+    def test_insert_dimes_dispense_yellows(self):
+        """Tests inserting 2 dimes, and dispensing 2 yellow gumballs"""
+        # input: insert("dime"), insert("dime"), dispense_yellow(), dispense_yellow(), return_my_change()
+        expected_output = "There is no change to return"
+
+        self.gumball_machine.insert("dime")
+        self.gumball_machine.insert("dime")
+        self.gumball_machine.dispense_yellow()
+        self.gumball_machine.dispense_yellow()
+        actual_output = self.gumball_machine.return_my_change()
+        self.assertEqual(expected_output, actual_output)
 
 if __name__ == '__main__':
     unittest.main()
