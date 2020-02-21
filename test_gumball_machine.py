@@ -3,7 +3,8 @@ import gumball_machine as gumball_machine_class
 
 
 class NoCurrencyTestCase(unittest.TestCase):
-    gumball_machine = gumball_machine_class.GumballMachine()
+    def setUp(self):
+        self.gumball_machine = gumball_machine_class.GumballMachine()
 
     def test_dispense_red(self):
         """Tests dispensing a red gumball with no currency in the machine"""
@@ -31,10 +32,11 @@ class NoCurrencyTestCase(unittest.TestCase):
 
 
 class ReturnValidCurrencyTestCases(unittest.TestCase):
-    gumball_machine = gumball_machine_class.GumballMachine()
+    def setUp(self):
+        self.gumball_machine = gumball_machine_class.GumballMachine()
 
     def test_return_nickel(self):
-        """Tests inserting a nickel, then returning change."""
+        """Tests inserting a nickel, then returning change"""
         # input: insert("nickel"), return_my_change()
         expected_output = "Returning your change of 5 cents"
 
@@ -43,7 +45,7 @@ class ReturnValidCurrencyTestCases(unittest.TestCase):
         self.assertEqual(expected_output, actual_output)
 
     def test_return_dime(self):
-        """Tests inserting a dime, then returning change."""
+        """Tests inserting a dime, then returning change"""
         # input: insert("dime"), return_my_change()
         expected_output = "Returning your change of 10 cents"
 
@@ -52,7 +54,7 @@ class ReturnValidCurrencyTestCases(unittest.TestCase):
         self.assertEqual(expected_output, actual_output)
 
     def test_return_quarter(self):
-        """Tests inserting a quarter, then returning change."""
+        """Tests inserting a quarter, then returning change"""
         # input: insert("quarter"), return_my_change()
         expected_output = "Returning your change of 25 cents"
 
@@ -62,7 +64,8 @@ class ReturnValidCurrencyTestCases(unittest.TestCase):
 
 
 class ExactCurrencyTestCase(unittest.TestCase):
-    gumball_machine = gumball_machine_class.GumballMachine()
+    def setUp(self):
+        self.gumball_machine = gumball_machine_class.GumballMachine()
 
     def test_insert_nickel_dispense_red(self):
         """Tests dispensing a red gumball with a nickel (5 cents) in the machine"""
