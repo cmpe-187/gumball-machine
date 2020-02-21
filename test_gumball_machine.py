@@ -109,6 +109,16 @@ class InvalidCurrencyTestCases(unittest.TestCase):
         actual_output = self.gumball_machine.return_my_change()
         self.assertEqual(expected_output, actual_output)
 
+    def test_return_dollars(self):
+        """Tests inserting multiple dollars, then returning change"""
+        # input: insert("dollar"), insert("dollar"), return_my_change()
+        expected_output = "dollar, dollar"
+
+        self.gumball_machine.insert("dollar")
+        self.gumball_machine.insert("dollar")
+        actual_output = self.gumball_machine.return_my_change()
+        self.assertEqual(expected_output, actual_output)
+
     def test_insert_dollar_dispense_red(self):
         """Tests inserting a dollar, then attempting to dispense a red gumball"""
         # input: insert("dollar"), dispense_red()
