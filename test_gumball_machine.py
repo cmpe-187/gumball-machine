@@ -96,5 +96,37 @@ class ExactCurrencyTestCase(unittest.TestCase):
         self.assertEqual(expected_output, actual_output)
 
 
+class InvalidCurrencyTestCases(unittest.TestCase):
+    def setUp(self):
+        self.gumball_machine = gumball_machine_class.GumballMachine()
+
+    def test_return_dollar(self):
+        """Tests inserting a dollar, then returning change"""
+        # input: insert("dollar"), return_my_change()
+        expected_output = "dollar"
+
+        self.gumball_machine.insert("dollar")
+        actual_output = self.gumball_machine.return_my_change()
+        self.assertEqual(expected_output, actual_output)
+
+    def test_insert_dollar_dispense_red(self):
+        """Tests inserting a dollar, then attempting to dispense a red gumball"""
+        # input: insert("dollar"), dispense_red()
+        expected_output = "dollar"
+
+        self.gumball_machine.insert("dollar")
+        actual_output = self.gumball_machine.dispense_red()
+        self.assertEqual(expected_output, actual_output)
+
+    def test_insert_dollar_dispense_yellow(self):
+        """Tests inserting a dollar, then attempting to dispense a yellow gumball"""
+        # input: insert("dollar"), yellow()
+        expected_output = "dollar"
+
+        self.gumball_machine.insert("dollar")
+        actual_output = self.gumball_machine.dispense_yellow()
+        self.assertEqual(expected_output, actual_output)
+
+
 if __name__ == '__main__':
     unittest.main()
