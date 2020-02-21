@@ -22,27 +22,36 @@ class GumballMachine:
         self.money_returned = []
 
     def dispense_red(self):
+        response = ""
+
         # Checks if there are any invalid currencies
         if len(self.invalid_currencies) != 0:
             self.return_invalid_currency()
 
         if self.money_value >= 5:
             self.money_value -= 5
-            return "Enjoy your red gumball"
+            response = "Enjoy your red gumball"
 
         else:
-            return "You need at least 5 cents to dispense a red gumball"
+            response = "You need at least 5 cents to dispense a red gumball"
+
+        return response
 
     def dispense_yellow(self):
+        response = ""
+
+        # Checks if there are any invalid currencies
         if len(self.invalid_currencies) != 0:
             self.return_invalid_currency()
 
         if self.money_value >= 10:
             self.money_value -= 10
-            return "Enjoy your yellow gumball"
+            response = "Enjoy your yellow gumball"
 
         else:
-            return "You need at least 10 cents to dispense a yellow gumball"
+            response = "You need at least 10 cents to dispense a yellow gumball"
+
+        return response
 
     def return_my_change(self):
         if self.money_value == 0:
