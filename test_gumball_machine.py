@@ -2,11 +2,11 @@ import unittest
 import gumball_machine as gumball_machine_class
 
 
-class NoMoneyTestCases(unittest.TestCase):
+class NoCurrencyTestCase(unittest.TestCase):
     gumball_machine = gumball_machine_class.GumballMachine()
 
     def test_dispense_red(self):
-        """Tests dispensing a red gumball with no money in the machine"""
+        """Tests dispensing a red gumball with no currency in the machine"""
         # input: dispense_red()
         expected_output = "You need at least 5 cents to dispense a red gumball"
 
@@ -14,7 +14,7 @@ class NoMoneyTestCases(unittest.TestCase):
         self.assertEqual(expected_output, actual_output)
 
     def test_dispense_yellow(self):
-        """Tests dispensing a yellow gumball with no money in the machine"""
+        """Tests dispensing a yellow gumball with no currency in the machine"""
         # input: dispense_yellow()
         expected_output = "You need at least 10 cents to dispense a yellow gumball"
 
@@ -22,7 +22,7 @@ class NoMoneyTestCases(unittest.TestCase):
         self.assertEqual(expected_output, actual_output)
 
     def test_return_my_change(self):
-        """Tests returning change with no money in the machine"""
+        """Tests returning change with no currency in the machine"""
         # input: return_my_change()
         expected_output = "There is no change to return"
 
@@ -61,7 +61,7 @@ class ReturnValidCurrencyTestCases(unittest.TestCase):
         self.assertEqual(expected_output, actual_output)
 
 
-class ExactMoneyTestCases(unittest.TestCase):
+class ExactCurrencyTestCase(unittest.TestCase):
     gumball_machine = gumball_machine_class.GumballMachine()
 
     def test_insert_nickel_dispense_red(self):

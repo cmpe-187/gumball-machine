@@ -2,24 +2,24 @@ class GumballMachine:
     def __init__(self):
         self.valid_currency = {"nickel": 5, "dime": 10, "quarter": 25}
         # Represents the total value of valid currency the user inserted
-        self.money_value = 0
+        self.currency_value = 0
         self.invalid_currencies = []
 
-    def insert(self, money):
+    def insert(self, currency):
         # Checks if the inserted value is a valid currency then adds it
-        if money in self.valid_currency:
-            self.money_value += self.valid_currency[money]
+        if currency in self.valid_currency:
+            self.currency_value += self.valid_currency[currency]
 
         # Adds invalid currencies to a list to return it later
         else:
-            self.invalid_currencies.append(money)
+            self.invalid_currencies.append(currency)
 
     def return_invalid_currency(self):
         print("Returning invalid currencies:")
         for x in range(len(self.invalid_currencies)):
             print(self.invalid_currencies[x])
 
-        self.money_returned = []
+        self.currency_returned = []
 
     def dispense_red(self):
         response = ""
@@ -28,8 +28,8 @@ class GumballMachine:
         if len(self.invalid_currencies) != 0:
             self.return_invalid_currency()
 
-        if self.money_value >= 5:
-            self.money_value -= 5
+        if self.currency_value >= 5:
+            self.currency_value -= 5
             response = "Enjoy your red gumball"
 
         else:
@@ -44,8 +44,8 @@ class GumballMachine:
         if len(self.invalid_currencies) != 0:
             self.return_invalid_currency()
 
-        if self.money_value >= 10:
-            self.money_value -= 10
+        if self.currency_value >= 10:
+            self.currency_value -= 10
             response = "Enjoy your yellow gumball"
 
         else:
@@ -54,11 +54,11 @@ class GumballMachine:
         return response
 
     def return_my_change(self):
-        if self.money_value == 0:
+        if self.currency_value == 0:
             return "There is no change to return"
 
         # Returns the user's change
         else:
-            response = f"Returning your change of {self.money_value} cents"
-            self.money_value = 0
+            response = f"Returning your change of {self.currency_value} cents"
+            self.currency_value = 0
             return response
