@@ -51,4 +51,4 @@ class GumballMachine:
         # Returns the user's change
         else:
             self.money_value = 0
-            return "Returning your change of ", self.money_value, " cents"
+            return f"Returning your change of {self.money_value} cents"
