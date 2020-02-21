@@ -1,4 +1,4 @@
-class gumball_machine:
+class GumballMachine:
     def __init__(self):
         self.valid_currency = {"nickel": 5, "dime": 10, "quarter": 25}
         # Represents the total value of valid currency the user inserted
