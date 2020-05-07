@@ -15,7 +15,7 @@
 %\setitemize{noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt}
 
 %fix table, figure floating issues
-%\usepackage[section]{placeins}
+\usepackage[section]{placeins}
 
 \title{Writing Test Cases II}
 \author{
@@ -28,14 +28,104 @@
 \begin{document}
 \maketitle
 \section{No Currency Test Cases}
+\begin{table}[!htb]
+\begin{tabularx}{\textwidth}{XXX}
+\toprule
+Test Name &
+    Input Vector &
+    Expected Output \\ \midrule
+test dispense red &
+    \texttt{<dispense\_red()>} &
+    ``You need at least 5 cents to dispense a red gumball" \\ \midrule
+test dispense yellow &
+    \texttt{<dispense\_yellow()>} &
+    ``You need at least 10 cents to dispense a red gumball" \\ \midrule
+test return my change &
+    \texttt{<return\_my\_change()>} &
+    ``There is no change to return" \\ \bottomrule
+\end{tabularx}
+\end{table}
 
 \section{Return Valid Currency Test Cases}
+\begin{table}[!htb]
+\begin{tabularx}{\textwidth}{XXX}
+\toprule
+Test Name &
+    Input Vector &
+    Expected Output \\ \midrule
+test return nickel &
+    \texttt{<insert("nickel"), return\_my\_change()>} &
+    ``Returning your change of 5 cents" \\ \midrule
+test return dime &
+    \texttt{<insert("dime"), return\_my\_change()>} &
+    ``Returning your change of 10 cents" \\ \midrule
+test return quarter &
+    \texttt{<insert("quarter"), return\_my\_change()>} &
+    ``Returning your change of 25 cents" \\ \bottomrule
+\end{tabularx}
+\end{table}
 
 \section{Exact Currency Test Cases}
+\begin{table}[!htb]
+\begin{tabularx}{\textwidth}{XXX}
+\toprule
+Test Name &
+    Input Vector &
+    Expected Output \\ \midrule
+test insert nickel dispense red &
+    \texttt{<insert("nickel"), dispense\_red()} &
+    ``Enjoy your red gumball" \\ \midrule
+test insert dime dispense yellow &
+    \texttt{<insert("nickel"), dispense\_yellow()>} &
+    ``Enjoy your yellow gumball" \\ \midrule
+test insert nickels dispense yellow &
+    \texttt{<insert("nickel"), insert("nickel"), dispense\_yellow()>} &
+    ``Enjoy your yellow gumball" \\ \bottomrule
+\end{tabularx}
+\end{table}
 
 \section{Invalid Currency Test Cases}
+\begin{table}[!htb]
+\begin{tabularx}{\textwidth}{XXX}
+\toprule
+Test Name &
+    Input Vector &
+    Expected Output \\ \midrule
+test return dollar &
+    \texttt{<insert("dollar"), return\_my\_change()>} &
+    ``Returning your invalid currency of dollar" \\ \midrule
+test return dollars &
+    \texttt{<insert("dollar"), insert("dollar"), return\_my\_change()>} &
+    ``Returning your invalid currency of dollar, dollar" \\ \midrule
+test insert dollar dispense red &
+    \texttt{<insert("dollar"), dispense\_red()>} &
+    ``Returning your invalid currency of dollar" \\ \midrule
+test insert dollar dispense yellow &
+    \texttt{<insert("dollar"), dispense\_yellow()>} &
+    ``Returning your invalid currency of dollar" \\ \bottomrule
+\end{tabularx}
+\end{table}
 
 \section{Multiple Gumballs Exact Currency Test Cases}
-
+\begin{table}[!htb]
+\begin{tabularx}{\textwidth}{XXX}
+\toprule
+Test Name &
+    Input Vector &
+    Expected Output \\ \midrule
+test insert nickels dispense reds &
+    \texttt{<insert("nickel"), insert("nickel"), dispense\_red(), dispense\_red(), return\_my\_change()>} &
+    ``There is no change to return" \\ \midrule
+test insert dime dispense reds &
+    \texttt{<insert("dime"), dispense\_red(), dispense\_red(), return\_my\_change()>} &
+    ``There is no change to return" \\ \midrule
+test insert nickels dispense yellows &
+    \texttt{<insert("nickel"), insert("nickel"), insert("nickel"), insert("nickel"), dispense\_yellow(), dispense\_yellow(), return\_my\_change()>} &
+    ``There is no change to return" \\ \midrule
+test insert dimes dispense yellows &
+    \texttt{<insert("dime"), insert("dime"), dispense\_yellow(), dispense\_yellow(), return\_my\_change()>} &
+    ``There is no change to return" \\ \bottomrule
+\end{tabularx}
+\end{table}
 
 \end{document}
