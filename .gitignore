@@ -130,3 +130,5 @@ dmypy.json
 
 # misc
 .idea
+*.aux
+*.gz
