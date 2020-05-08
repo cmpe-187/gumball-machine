@@ -11,8 +11,8 @@
 \pagenumbering{gobble}
 
 %compact lists
-%\usepackage{enumitem}
-%\setitemize{noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt}
+\usepackage{enumitem}
+\setitemize{noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt}
 
 %fix table, figure floating issues
 \usepackage[section]{placeins}
@@ -156,19 +156,22 @@ TC &
     ``" &
     \checkmark &
     &
-    & \\ \midrule
+    & 
+    \\ \midrule
 02 &
     \texttt{<dispense\_red()>} &
     ``You need at least 5 cents to dispense a red gumball" &
     &
     \checkmark &
-    & \\ \midrule
+    & 
+    \\ \midrule
 03 &
     \texttt{<dispense\_yellow()>} &
     ``You need at least 10 cents to dispense a yellow gumball" &
     &
     &
-    \checkmark & \\ \midrule
+    \checkmark & 
+    \\ \midrule
 04 &
     \texttt{<return\_my\_change()>} &
     ``There is no change to return" &
@@ -198,26 +201,127 @@ TC &
 %    ``Returning your change of 25 cents" \\ \bottomrule
 %\end{tabularx}
 %\end{table}
-%
-%\section{Exact Currency Test Cases}
-%\begin{table}[!htb]
-%\begin{tabularx}{\textwidth}{XXX}
-%\toprule
-%Test Name &
-%    Input Vector &
-%    Expected Output \\ \midrule
-%test insert nickel dispense red &
-%    \texttt{<insert("nickel"), dispense\_red()} &
-%    ``Enjoy your red gumball" \\ \midrule
-%test insert dime dispense yellow &
-%    \texttt{<insert("nickel"), dispense\_yellow()>} &
-%    ``Enjoy your yellow gumball" \\ \midrule
-%test insert nickels dispense yellow &
-%    \texttt{<insert("nickel"), insert("nickel"), dispense\_yellow()>} &
-%    ``Enjoy your yellow gumball" \\ \bottomrule
-%\end{tabularx}
-%\end{table}
-%
+
+\newpage
+\section{Exact Currency Test Cases - Original Test Cases}
+\begin{table}[!htb]
+\begin{tabularx}{\textwidth}{XXX}
+\toprule
+Test Name &
+    Input Vector &
+    Expected Output \\ \midrule
+test insert nickel dispense red &
+    \texttt{<insert("nickel"), dispense\_red()} &
+    ``Enjoy your red gumball" \\ \midrule
+test insert dime dispense yellow &
+    \texttt{<insert("nickel"), dispense\_yellow()>} &
+    ``Enjoy your yellow gumball" \\ \midrule
+test insert nickels dispense yellow &
+    \texttt{<insert("nickel"), insert("nickel"), dispense\_yellow()>} &
+    ``Enjoy your yellow gumball" \\ \bottomrule
+\end{tabularx}
+\caption{Original "Exact Currency" Test Cases}
+\end{table}
+
+Of these three test cases, no particular technique (e.g. control flow testing, data flow testing, etc.) was used in their creation.
+
+\newpage
+\section{Exact Currency Test Cases - Revised Test Cases}
+In general, we assume the gumball machine has enough currency when applicable.
+
+\subsection{Conformance Testing}
+\begin{figure}[h!]
+	\centerline{\includegraphics[width=\textwidth]{gumball-machine-finite-state-machine.png}}
+	\caption{FSM Model of Gumball Machine (Exact Currency Subset)}
+\end{figure}
+
+\begin{table}[htb!]
+\centering
+\begin{tabularx}{11cm}{lll}
+\toprule
+Abbreviation &
+    Expanded Form &
+    Meaning \\ \midrule
+NC &
+    No currency &
+    The machine has no currency \\ \midrule
+HC &
+    Has currency &
+    The machine has some currency \\ \bottomrule
+\end{tabularx}
+\caption{Set of States in FSM of Figure 2}
+\end{table}
+
+\begin{table}[htb!]
+\centering
+\begin{tabularx}{9.25cm}{ll}
+\toprule
+Inputs &
+    Outputs \\ \midrule
+IN: Insert nickel &
+    DR: Dispense red gumball \\ \midrule
+ID: Insert dime &
+    DY: Dispense yellow gumball \\ \midrule
+IQ: Insert quarter &
+    ---: No output \\ \midrule
+SR: Select red gumball &
+    \\ \midrule
+SY: Select yellow gumball &
+    \\ \midrule
+O: Out of currency &
+    \\ \bottomrule
+\end{tabularx}
+\caption{Input and Output Sets in FSM of Figure 2}
+\end{table}
+
+\pagebreak
+\begin{table}[htb!]
+\centering
+\begin{tabularx}{13cm}{lp{5cm}p{6cm}}
+\toprule
+Test Case &
+    Test Sequence &
+    Expected Output \\ \midrule
+1 &
+    \begin{itemize}
+        \item{$<$NC, IN / ---, HC$>$}
+        \item{$<$HC, SR / DR, HC$>$}
+        \item{$<$HC, O / ---, NC$>$}
+    \end{itemize} &
+    ``Enjoy your red gumball" \\ \midrule
+2 &
+    \begin{itemize}
+        \item{$<$NC, ID / ---, HC$>$}
+        \item{$<$HC, SY / DY, HC$>$}
+        \item{$<$HC, O / ---, NC$>$}
+    \end{itemize} &
+    ``Enjoy your yellow gumball" \\ \midrule
+3 &
+    \begin{itemize}
+        \item{$<$NC, IN / ---, HC$>$}
+        \item{$<$HC, IN / ---, HC$>$}
+        \item{$<$HC, SY / DY, HC$>$}
+        \item{$<$HC, O / ---, NC$>$}
+    \end{itemize} &
+    ``Enjoy your yellow gumball" \\ \midrule
+4 &
+    \begin{itemize}
+        \item{$<$NC, IQ / ---, HC$>$}
+        \item{$<$HC, SY / DY, HC$>$}
+        \item{$<$HC, SR / DR, HC$>$}
+        \item{$<$HC, SY / DY, HC$>$}
+        \item{$<$HC, O / ---, NC$>$}
+    \end{itemize} &
+    \begin{itemize}
+        \item{``Enjoy your yellow gumball"}
+        \item{``Enjoy your red gumball"}
+        \item{``Enjoy your yellow gumball"}
+    \end{itemize} \\ \bottomrule
+\end{tabularx}
+\caption{Revised ``Exact Currency" Test Cases - Conformance Testing}
+\end{table}
+
+\pagebreak
 %\section{Invalid Currency Test Cases}
 %\begin{table}[!htb]
 %\begin{tabularx}{\textwidth}{XXX}
