@@ -1,8 +1,8 @@
 # gumball-machine
 
-A virtual gumball machine.
+A virtual gumball machine. See `doc/writing-test-cases-II.pdf` for updated test cases using control flow testing, equivalence class testing, and conformance testing.
 
-## Test Cases
+## Original Test Cases
 
 ### NoCurrencyTestCases
 
